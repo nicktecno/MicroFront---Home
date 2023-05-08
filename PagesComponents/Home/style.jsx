@@ -7,6 +7,7 @@ import { Youtube } from "@styled-icons/bootstrap/Youtube";
 import { Facebook } from "@styled-icons/entypo-social/Facebook";
 import { Instagram } from "@styled-icons/bootstrap/Instagram";
 import { Pinterest } from "@styled-icons/entypo-social/Pinterest";
+import { Search } from "@styled-icons/boxicons-regular/Search";
 
 const customMedia = generateMedia({
   desktop: "1200px",
@@ -17,6 +18,14 @@ const customMedia = generateMedia({
   ipobre: "375px",
   pobre: "330px",
 });
+
+export const BuscaIcon = styled(Search)`
+  color: var(--default-color);
+  height: 32px;
+  width: 32px;
+  margin-right: 0px;
+  z-index: 10;
+`;
 
 export const FacebookIcon = styled(Facebook)`
   color: #fff;
@@ -80,6 +89,67 @@ export const ErrorCheck = styled.div`
   text-transform: uppercase;
 `;
 
+export const SliderPromotions = styled.div`
+  max-width: 1920px;
+
+  width: 100%;
+  position: relative;
+
+  .slick-slide {
+    margin: 5px 3px;
+
+    width: 16.2% !important;
+
+    ${customMedia.lessThan("1700px")`
+      width:16.1% !important;
+        `}
+    ${customMedia.lessThan("1400px")`
+      width:16% !important;
+        `}
+         ${customMedia.lessThan("1200px")`
+      width:15.9% !important;
+        `}
+         ${customMedia.lessThan("1050px")`
+      width:15.8% !important;
+        `}
+
+    ${customMedia.lessThan("notebook")`
+      width:25% !important;
+        `}
+    ${customMedia.lessThan("mobile")`
+      width:25% !important;
+        `}
+          ${customMedia.lessThan("irico")`
+      width:25% !important;
+        `}
+  }
+
+  .slick-list {
+    justify-content: center;
+    padding: 0px;
+  }
+
+  .slick-track {
+    display: flex;
+    justify-content: ${(props) =>
+      props.lengthPromotions >= 6 ? "flex-start" : "center"};
+  }
+`;
+
+export const PromotionContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+`;
+
 export const CaixaProduto = styled.div`
   background-color: #fff;
   border-radius: 10px;
@@ -100,67 +170,11 @@ export const CaixaProduto = styled.div`
     margin: 15px auto;
   }
 
-  .circulo {
-    margin: initial;
-    font-size: 12px;
-    font-weight: 600;
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
+  &:hover,
+  &.active {
     .color {
-      width: 20px;
-      height: 20px;
-      border-radius: 15px;
-      border: 2px solid #ce171f;
-      margin-right: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
       span {
-        display: none;
-        svg {
-          color: #333;
-        }
-      }
-    }
-
-    &:hover,
-    &.active {
-      .color {
-        span {
-          display: initial;
-        }
-      }
-    }
-
-    &.Branco {
-      .color {
-        background-color: #fff;
-        svg {
-          color: #333;
-        }
-      }
-    }
-
-    &.Prata {
-      .color {
-        background-color: #bec2cb;
-        svg {
-          color: #fff;
-        }
-      }
-    }
-
-    &.Preto {
-      .color {
-        background-color: #000;
-        svg {
-          color: #fff;
-        }
+        display: initial;
       }
     }
   }
@@ -169,14 +183,6 @@ export const CaixaProduto = styled.div`
 export const BannerContainer = styled.div`
   max-width: 1920px;
   width: 100%;
-
-  .slick-dots {
-    li {
-      button:before {
-        font-size: 20px !important;
-      }
-    }
-  }
 `;
 export const ImageBannerWeb = styled.img`
   width: 100%;
@@ -187,210 +193,325 @@ export const ImageBannerMobile = styled.img`
   height: auto;
 `;
 
-export const sliderBrowser = styled.div`
-  align-self: center;
-  align-items: center;
-  max-width: 1920px;
+export const SliderDesktop = styled.div`
   width: 100%;
-
-  a {
-    display: flex !important;
-    width: 100% !important;
-  }
+  padding: 0px;
+  margin-bottom: 30px;
 
   ${customMedia.lessThan("tablet")`
-   display:none;
-        `}
-`;
-export const sliderMobile = styled.div`
-  margin-bottom: 50px;
-  .carousel-control-prev {
-    transition: 0.3s;
-
-    height: 100%;
-    width: 40px;
-  }
-  .carousel-control-prev-icon {
-    /* background-image: url("/image/prevBlack.png"); */
-    height: 20px;
-    width: 20px;
-  }
-
-  .carousel-control-next {
-    transition: 0.3s;
-
-    height: 100%;
-    width: 40px;
-  }
-  .carousel-control-next-icon {
-    /* background-image: url("/image/nextBlack.png"); */
-    height: 20px;
-    width: 20px;
-  }
-
-  @media only screen and (min-width: 768px) {
     display: none;
-  }
-`;
+    `}
 
-export const slider = styled.div`
-  position: relative;
-  margin: 0 5%;
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  align-items: center;
-  max-width: 1920px;
-  width: 100%;
-  .container {
+  a {
+    display: flex;
     width: 100%;
-  }
-
-  box-sizing: border-box;
-
-  .container {
-    margin: 0;
-    max-width: 100%;
-    width: 100%;
-    text-align: start;
-    ${customMedia.lessThan("mobile")`
-    margin:0;
-       
-          max-width: 100%;
-          width: 100%;
-          overflow: visible;
-          max-height: 300px;
-          padding: 0;
-        `}
-  }
-
-  .slick-slider {
-    width: 97%;
-  }
-  .slick-slide {
-    margin: 15px 0;
-  }
-
-  .slick-list {
-    padding: 0px 0px 0px 5px;
-
-    width: 100%;
+    height: 100% !important;
   }
 
   .slick-prev {
-    left: 18px !important;
-    color: var(--font-color);
+    background-color: transparent;
+    transition: 0.3s;
 
-    height: 30px;
-    width: 30px;
-    margin-right: 20px;
-    margin-bottom: 30px;
-    z-index: 99;
-    :before {
-      display: flex;
-      width: 20px;
-      height: 20px;
-      background-image: url("images/leftArrow.png");
-      background-size: 20px 20px;
-      content: "";
+    :hover {
+      background-color: #fec0149e;
     }
   }
   .slick-next {
-    right: 7px !important;
-    color: var(--font-color);
+    background-color: transparent;
+    transition: 0.3s;
 
-    height: 30px;
-    width: 30px;
-    margin-left: 20px;
-    z-index: 99;
-    :before {
-      display: flex;
-      width: 20px;
-      height: 20px;
-      background-image: url("images/rightArrow.png");
-      background-size: 20px 20px;
-      content: "";
+    :hover {
+      background-color: #fec0149e;
     }
   }
 
-  .produtos-txt {
-    font-size: 40px;
-    font-weight: 700;
-    color: var(--title-color);
-    margin-bottom: 15px !important;
-
-    ${customMedia.lessThan("1920px")`
-   margin-left: 2%;
-        `}
-    ${customMedia.lessThan("desktop")`
-    font-size: 32px;
-        `}
-            ${customMedia.lessThan("tablet")`
-    font-size: 28px;
-        `}
-    ${customMedia.lessThan("mobile")`
-        margin-left: 12px !important;
-        margin-bottom: 0px !important;
-        font-size: 23px;
-        `}
-  }
-
-  a {
-    margin-top: 10px;
-    padding: 0 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100% !important;
-    cursor: pointer;
-  }
-  #imgDiv {
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-  }
-  img {
-    width: auto;
-    max-width: 100%;
-    margin: 0;
-    padding: 0 5px;
-  }
-  .slick-initialized .slick-slide {
-    margin-top: 0px;
-    div {
-      width: 100%;
-      height: 0;
-      padding-bottom: 100% !important;
-    }
-  }
-
-  h2 {
-    align-self: start;
-  }
-
-  h3 {
-    position: relative;
-    font-size: 18px;
-    font-weight: 700;
-    margin: 5px;
-    display: block;
-    text-align: center;
+  .slick-list {
     width: 100%;
 
-    ${customMedia.lessThan("tablet")`
-            font-size: 14px;
-        `}
+    padding: 0px;
   }
 
-  ${customMedia.lessThan("mobile")` 
-	max-width: 100%;
-	margin:0;
+  .slick-slide {
+    margin: 0px;
+  }
+`;
 
-	.slick-list{
-		padding:0;
-	}
-	`}
+export const SliderMobile = styled.div`
+  width: 100%;
+  padding: 0px;
+  margin-bottom: 30px;
+
+  ${customMedia.greaterThan("tablet")`
+    display: none;
+    `}
+  a {
+    display: flex;
+    width: 100%;
+    height: 100% !important;
+  }
+
+  .slick-prev {
+    background-color: transparent;
+    transition: 0.3s;
+
+    :hover {
+      background-color: #fec0149e;
+    }
+  }
+  .slick-next {
+    background-color: transparent;
+    transition: 0.3s;
+
+    :hover {
+      background-color: #fec0149e;
+    }
+  }
+
+  .slick-list {
+    width: 100%;
+
+    padding: 0px;
+  }
+
+  .slick-slide {
+    margin: 0px;
+  }
+`;
+
+export const SliderCategory = styled.div`
+  display: block;
+
+  width: 100%;
+  position: relative;
+  max-width: 1920px;
+
+  .slick-list {
+    padding: 0px;
+  }
+
+  .slick-slide {
+    margin: 0px;
+    margin-bottom: 20px;
+  }
+
+  .category {
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    width: 180px;
+    height: 220px;
+
+    margin-right: 14px;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+
+    ${customMedia.lessThan("notebook")`
+      width:170px;
+      height:170px;
+    `}
+    ${customMedia.lessThan("tablet")`
+      width:150px;
+      height:150px;`}
+
+${customMedia.lessThan("irico")`
+      width:115px;
+      height:115px;`}
+
+  img {
+      width: 100%;
+      height: 200px;
+      margin: 0px;
+      object-fit: contain;
+    }
+
+    .nameSeller {
+      width: 100%;
+      margin-top: 5px;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 35px;
+      height: 35px;
+      max-height: 35px;
+      padding: 0px 5px;
+      display: -webkit-box;
+      line-height: 16px;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      ${customMedia.lessThan("mobile")`
+     
+     font-size:12px;
+     `}
+    }
+  }
+`;
+
+export const SellerContainer = styled.div`
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  padding: 5px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--box-shadow);
+  font-weight: bold;
+
+  &.search {
+    margin-right: 0px;
+  }
+
+  ${customMedia.lessThan("notebook")`
+      width:170px;
+      height:170px;
+    `}
+  ${customMedia.lessThan("tablet")`
+      width:150px;
+      height:150px;
+     
+      `}
+   
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin: 0px;
+    object-fit: contain;
+  }
+
+  .nameSeller {
+    text-align: center;
+    min-height: 35px;
+    height: 35px;
+    max-height: 35px;
+    padding: 0px 5px;
+    overflow: hidden;
+    display: -webkit-box;
+    line-height: 16px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    ${customMedia.lessThan("tablet")`
+     
+     font-size:12px;
+     `}
+  }
+`;
+
+export const SearchSellersContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SearchBox = styled.div`
+  width: 50%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const SearchBar = styled.div`
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  ${customMedia.lessThan("notebook")`
+      flex-direction:column;
+      gap:5px;
+      align-items:flex-start;
+    `}
+
+  label {
+    width: 100%;
+    max-width: 740px;
+    line-height: 25px;
+    font-size: 18px;
+
+    font-weight: bold;
+    color: #000;
+    margin: 0px 10px 0px 0px;
+    position: relative;
+
+    ${customMedia.lessThan("mobile")`
+     font-size:14px;
+    `}
+
+    svg {
+      cursor: pointer;
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      z-index: 10;
+      color: var(--default-color);
+
+      transition: 0.3s;
+      :hover {
+        color: var(--default-color-hover);
+      }
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      margin-top: 10px;
+      padding: 0px 10px 0px 50px;
+      background-color: #f4f4f5;
+      border: 0px;
+      border-radius: 2px;
+      font-size: 16px;
+      ${customMedia.lessThan("mobile")`
+     font-size:12px;
+    `}
+    }
+  }
+
+  button.searchButton {
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--default-color);
+    transition: 0.3s;
+
+    ${customMedia.lessThan("mobile")`
+     font-size:12px;
+    `}
+
+    :hover {
+      background-color: var(--default-color-hover);
+    }
+
+    ${customMedia.lessThan("notebook")`
+      width:100%;
+    `}
+  }
+`;
+
+export const SearchButton = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 1920px;
+  button {
+    width: 200px;
+    height: 40px;
+    font-weight: 600;
+    border: none;
+  }
 `;
 
 export const sliderProduct = styled.div`
@@ -429,14 +550,6 @@ export const sliderProduct = styled.div`
     height: 30px;
     width: 30px;
     margin-right: 20px;
-    .slick-prev:before {
-      display: flex;
-      width: 20px;
-      height: 20px;
-      background-image: url("images/leftArrow.png");
-      background-size: 20px 20px;
-      content: "";
-    }
     ${customMedia.lessThan("mobile")`
       display: none !important;
     `}
@@ -685,20 +798,26 @@ export const ConjuntoBottom = styled.div`
 `;
 
 export const ContainerBottom = styled.div`
-  display: flex;
-  justify-content: start;
-  padding-left: 0px;
-  padding-right: 0px;
-  ${customMedia.lessThan("tablet")`
-            margin-bottom:20px;
-        `}
+  display: block;
+
+  width: 100%;
+  position: relative;
+  max-width: 1920px;
+
+  .slick-list {
+    padding: 0px;
+  }
+
+  .slick-slide {
+    margin-top: 5px;
+  }
 `;
 
 export const SecondaryBanner = styled.div`
-  width: 90%;
-  max-width: 1900px;
+  width: 100%;
+  max-width: 1920px;
   height: auto;
-  margin: 60px auto;
+  margin: 30px 0px 0px 0px;
 `;
 
 export const BannerDesktop = styled.div`
@@ -723,12 +842,36 @@ export const ContainerGeneral = styled.div`
   height: 100%;
   min-height: 100vh;
   flex-direction: column;
+  padding: 0px 12%;
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
-`;
 
+  ${customMedia.lessThan("1366px")`
+    padding: 0px 5%;
+  `}
+
+  ${customMedia.lessThan("tablet")`
+    padding:0px 10px;
+  `}
+
+  .labelShowCase {
+    align-self: flex-start;
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    max-width: 1920px;
+    ${customMedia.lessThan("tablet")`
+   font-size: 20px;
+  `}
+    &.noSlider {
+      margin-bottom: 5px;
+    }
+  }
+`;
 export const BoxNextArrow = styled.div`
   display: flex;
 
@@ -736,9 +879,8 @@ export const BoxNextArrow = styled.div`
     display: flex;
     width: 20px;
     height: 20px;
-    background-image: url("images/rightArrow.png");
+    color: var(--font-color);
     background-size: 20px 20px;
-    content: "";
   }
 `;
 
@@ -749,8 +891,7 @@ export const BoxPrevArrow = styled.div`
     display: flex;
     width: 20px;
     height: 20px;
-    background-image: url("images/leftArrow.png");
+    color: var(--font-color);
     background-size: 20px 20px;
-    content: "";
   }
 `;

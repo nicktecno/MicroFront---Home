@@ -37,7 +37,11 @@ const nextConfig = {
     config.plugins.push(
       new NextFederationPlugin({
         name: "homePage",
-        remotes: {},
+        remotes: {
+          generalProductCards: `generalProductCards@https://micro-front-search-k5g1.vercel.app//_next/static/${
+            isServer ? "ssr" : "chunks"
+          }/remoteEntry.js`,
+        },
         filename: "static/chunks/remoteEntry.js",
         exposes: {
           "./home": "./PagesComponents/Home/Home.jsx",
