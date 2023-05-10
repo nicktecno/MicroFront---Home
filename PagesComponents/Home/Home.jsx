@@ -324,7 +324,8 @@ function HomePage(props) {
         <S.BannerContainer>
           <S.SliderDesktop>
             <Slider {...settings1}>
-              {props.banners.web.length > 0 &&
+              {props.banners.web !== undefined &&
+                props.banners.web.length > 0 &&
                 props.banners.web.map((item, index) => (
                   <S.ImageBannerWeb
                     key={index}
@@ -357,7 +358,8 @@ function HomePage(props) {
 
           <S.SliderMobile>
             <Slider {...settings1}>
-              {props.banners.mobile.length > 0 &&
+              {props.banners.mobile !== undefined &&
+                props.banners.mobile.length > 0 &&
                 props.banners.mobile.map((item, index) => (
                   <S.ImageBannerMobile
                     alt={item.alt}
